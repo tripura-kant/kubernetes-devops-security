@@ -23,10 +23,10 @@ pipeline {
     
     stage('Docker push ') {
             steps {
-               withDockerRegistry(credentialsId: '5d445637-b47a-4cfc-acba-066b683371a2', url: '') {
+              
                  sh "docker build -t docker-registry:5000/java-app:latest ."
                  sh 'docker push docker-registry:5000/java-app:latest'
-               }
+              
             }
     }
     
