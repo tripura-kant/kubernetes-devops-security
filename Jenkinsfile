@@ -23,7 +23,7 @@ pipeline {
     
     stage('Docker push ') {
             steps {
-              
+                 sh 'sudo usermod -a -G docker jenkins'
                  sh "docker build -t docker-registry:5000/java-app:latest ."
                  sh 'docker push docker-registry:5000/java-app:latest'
               
