@@ -25,7 +25,7 @@ pipeline {
             steps {
                  sh 'sudo usermod -a -G docker jenkins'
                  sh 'docker build -t tripurakant/numeric-app:""$GIT_COMMIT"" .'
-                 sh 'docker push tripurakant/numeric-app:""$GIT_COMMIT""'
+                 #sh 'docker push tripurakant/numeric-app:""$GIT_COMMIT""'
               
             }
     }
