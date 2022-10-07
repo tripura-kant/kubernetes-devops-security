@@ -25,10 +25,15 @@ pipeline {
             steps {
                  sh 'sudo usermod -a -G docker jenkins'
                  sh 'docker build -t tripurakant/numeric-app:""$GIT_COMMIT"" .'
-                 
-              
             }
     }
-    
+        stage('K8s Deployment') {
+            steps {
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                sh "sed -i 's#REPLACE_ME#tripurakant/numeric-app:latest#g' k8s_deployment_service.yaml"
+                sh "kubectl apply -f k8s_deployment_service.yaml"
+                }
+            }
+    } 
   }
   }
