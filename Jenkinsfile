@@ -32,7 +32,7 @@ pipeline {
                 }
          }
     }
-    
+   }
     stage('Docker push ') {
             steps {
                  sh 'sudo usermod -a -G docker jenkins'
