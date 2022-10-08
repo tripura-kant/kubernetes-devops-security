@@ -20,6 +20,13 @@ pipeline {
         }
       }
     }
+}
+  
+   stage('sonarQube ') {
+            steps {
+                 sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=numerc-2 -Dsonar.host.url=http://35.226.175.104:9000 -Dsonar.login=sqp_bb04a8a3989f79440dd36f9101eeee6a27d82cc7'
+            }
+    }
     
     stage('Docker push ') {
             steps {
