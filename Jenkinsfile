@@ -1,3 +1,4 @@
+@Library('slack') _
 pipeline {
   agent any
 
@@ -17,6 +18,8 @@ pipeline {
         always {
           junit 'target/surefire-reports/*.xml'
           jacoco execPattern: 'target/jacoco.exec'
+          
+          
         }
       }
     }
@@ -41,5 +44,12 @@ pipeline {
                 }
             }
     } 
+    post {
+        always {
+	    /* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
+            slackNotifier(currentBuild.currentResult)
+            cleanWs()
+        }
+    }
   }
 }
