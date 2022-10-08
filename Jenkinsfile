@@ -20,7 +20,12 @@ pipeline {
         }
       }
     }
-  
+  stage('Dependency check ') {
+            steps {
+                 sh 'mvn dependency-check:check'
+                 
+            }
+    }
    
     stage('Docker push ') {
             steps {
